@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Truckers</string>
+    <string name="login">Login</string>
+    <string name="register">Registrarse</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="password_check">Confirmar contraseña</string>
+    <string name="email_hint">Correo</string>
 </resources>
