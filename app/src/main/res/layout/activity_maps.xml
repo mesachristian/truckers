@@ -4,15 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity"
+    android:background="@color/background"
+    tools:context=".view.ui.MapsActivity"
     >
 
+    <LinearLayout
+        android:id="@+id/back_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left">
+
+        <ImageButton
+            android:id="@+id/home_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:background="@color/background"/>
+    </LinearLayout>
 
     <LinearLayout
         android:padding="15dp"
         android:id="@+id/origen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/back_button_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,29 +99,30 @@
 
 
         <Button
+            android:id="@+id/start_route_btn"
             android:layout_width="match_parent"
-            android:layout_height="161dp"
-            android:backgroundTint="#765EF0"
+            android:layout_height="wrap_content"
             android:text="INICIAR RUTA"
-            android:background="@drawable/rounded_corners"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/button_font"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="bold"
-            />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <View
-            android:layout_width="363dp"
-            android:layout_height="68dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
 
         <Button
-
+            android:id="@+id/recomendation_btn"
             android:layout_width="match_parent"
-            android:layout_height="161dp"
-            android:backgroundTint="#FF4755"
-            android:background="@drawable/rounded_corners"
+            android:layout_height="wrap_content"
             android:text="RECOMENDACIONES"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/button_font"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
 
