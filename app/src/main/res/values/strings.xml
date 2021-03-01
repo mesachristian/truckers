@@ -5,4 +5,18 @@
     <string name="password_hint">Contraseña</string>
     <string name="password_check">Confirmar contraseña</string>
     <string name="email_hint">Correo</string>
+    <string name="title_activity_home_drawer">HomeDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_routes">Rutas</string>
+    <string name="menu_alerts">Alertas</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_send">Send</string>
 </resources>
