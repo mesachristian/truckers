@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomAlarmActivity">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nombre alarma"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Pulso alarma"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="318dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Avisame cuando sea"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="459dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="405dp"
+        android:layout_height="54dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="1dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nueva alarma"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="86dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#952828"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        app:fabSize="auto"
+        app:rippleColor="#FFFFFF"
+        app:srcCompat="?android:attr/textCheckMark"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="628dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="296dp"
+        android:layout_height="69dp"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="222dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="57dp"
+            tools:layout_editor_absoluteY="222dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alarma personalizada 1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:hint="60"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="378dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mayor"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="527dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menor"
+        tools:layout_editor_absoluteX="250dp"
+        tools:layout_editor_absoluteY="527dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
