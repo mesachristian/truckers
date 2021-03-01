@@ -9,7 +9,11 @@
         android:roundIcon="@drawable/truck_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.RegisterActivity"></activity>
+        <activity
+            android:name=".HomeDrawer"
+            android:label="@string/title_activity_home_drawer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".view.ui.RegisterActivity" />
         <activity android:name=".view.ui.LoginActivity" />
         <activity android:name=".view.ui.HomeNotLoggedInActivity">
             <intent-filter>

@@ -33,7 +33,7 @@
             android:id="@+id/login_logo"
             android:layout_width="214dp"
             android:layout_height="214dp"
-            android:src="@drawable/login_logo"/>
+            android:src="@drawable/truck_logo"/>
 
         <EditText
             android:id="@+id/login_email_field"
