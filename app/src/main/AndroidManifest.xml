@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/truck_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.RegisterActivity"></activity>
+        <activity android:name=".CustomAlarmActivity"></activity>
+        <activity android:name=".AlarmActivity" />
+        <activity android:name=".view.ui.RegisterActivity" />
         <activity android:name=".view.ui.LoginActivity" />
         <activity android:name=".view.ui.HomeNotLoggedInActivity">
             <intent-filter>
