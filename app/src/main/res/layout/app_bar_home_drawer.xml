@@ -39,7 +39,8 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@drawable/ic_directions_beige_24dp" />
+            app:srcCompat="@drawable/ic_directions_beige_24dp"
+            android:onClick="showViewMaps"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_recommendation"

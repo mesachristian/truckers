@@ -1,12 +1,18 @@
 package com.example.truckers;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.truckers.view.ui.MapsActivity;
+import com.example.truckers.view.ui.RegisterActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,6 +30,10 @@ import android.view.Menu;
 public class HomeDrawer extends AppCompatActivity {
 
     private static AppBarConfiguration mAppBarConfiguration;
+
+    private DrawerLayout mDrawer;
+
+    private NavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +54,11 @@ public class HomeDrawer extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share)
+                R.id.nav_home, R.id.nav_routes,
+                R.id.nav_profile, R.id.nav_alerts, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -66,4 +77,26 @@ public class HomeDrawer extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.nav_routes:
+                Intent intent = new Intent(HomeDrawer.this, MapsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void showViewMaps(View v){
+        Intent intent = new Intent(HomeDrawer.this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+
 }

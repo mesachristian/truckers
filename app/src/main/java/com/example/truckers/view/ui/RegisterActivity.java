@@ -25,7 +25,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, HomeDrawer.class);
-                Log.d("my", "hola");
                 startActivity(intent);
             }
 
