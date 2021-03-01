@@ -98,5 +98,10 @@ public class HomeDrawer extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showViewAlarms(View v){
+        Intent intent = new Intent(HomeDrawer.this, AlarmActivity.class);
+        startActivity(intent);
+    }
+
 
 }
