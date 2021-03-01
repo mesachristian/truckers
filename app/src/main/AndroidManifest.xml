@@ -15,6 +15,8 @@
             android:label="@string/title_activity_home_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".view.ui.MapsActivity" />
+        <activity android:name=".CustomAlarmActivity"></activity>
+        <activity android:name=".AlarmActivity" />
         <activity android:name=".view.ui.RegisterActivity" />
         <activity android:name=".view.ui.LoginActivity" />
         <activity android:name=".view.ui.HomeNotLoggedInActivity">
