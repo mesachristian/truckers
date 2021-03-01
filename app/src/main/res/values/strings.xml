@@ -17,6 +17,6 @@
     <string name="menu_perfil">Perfil</string>
     <string name="menu_routes">Rutas</string>
     <string name="menu_alerts">Alertas</string>
-    <string name="menu_logout">Logout</string>
+    <string name="menu_logout">Cerrar sesión</string>
     <string name="menu_send">Send</string>
 </resources>
