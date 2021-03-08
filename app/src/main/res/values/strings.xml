@@ -5,4 +5,5 @@
     <string name="password_hint">Contraseña</string>
     <string name="password_check">Confirmar contraseña</string>
     <string name="email_hint">Correo</string>
+    <string name="profile_image_label">Imagen de perfil:</string>
 </resources>
