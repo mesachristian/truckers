@@ -23,7 +23,8 @@
     <include
         android:id="@+id/include"
         layout="@layout/content_home_drawer"
-        android:layout_width="424dp" />
+        android:layout_width="424dp"
+        android:layout_height="750dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

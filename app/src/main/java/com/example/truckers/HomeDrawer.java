@@ -12,6 +12,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -26,14 +29,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.FrameLayout;
 
-public class HomeDrawer extends AppCompatActivity {
+public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private static AppBarConfiguration mAppBarConfiguration;
 
-    private DrawerLayout mDrawer;
+    public DrawerLayout drawerLayout;
 
-    private NavigationView navigation;
+    /*public FrameLayout frameLayout;
+
+    public NavigationView navigationView;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +55,19 @@ public class HomeDrawer extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        /*frameLayout = (FrameLayout) findViewById(R.id.nav_view);*/
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -61,41 +79,23 @@ public class HomeDrawer extends AppCompatActivity {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        NavigationUI.setupWithNavController(navigationView, navController);*/
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_drawer, menu);
-        return true;
-    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                mDrawer.openDrawer(GravityCompat.START);
-                return true;
+        switch (menuItem.getItemId()) {
             case R.id.nav_routes:
-                Intent intent = new Intent(HomeDrawer.this, MapsActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(HomeDrawer.this, MapsActivity.class));
+                return true;
+            case R.id.nav_alerts:
+                startActivity(new Intent(HomeDrawer.this, AlarmActivity.class));
                 return true;
             default:
-                return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(menuItem);
         }
-    }
 
-    public void showViewMaps(View v){
-        Intent intent = new Intent(HomeDrawer.this, MapsActivity.class);
-        startActivity(intent);
     }
 
     public void showViewAlarms(View v){
@@ -103,5 +103,8 @@ public class HomeDrawer extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void showViewMaps(View v){
+        Intent intent = new Intent(HomeDrawer.this, MapsActivity.class);
+        startActivity(intent);
+    }
 }
