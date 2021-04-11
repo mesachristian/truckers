@@ -25,36 +25,7 @@
             android:background="@color/background"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:padding="15dp"
-        android:id="@+id/origen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/back_button_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
-            android:text="Origen:"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:padding="15dp"
@@ -63,8 +34,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/origen"
-        android:layout_below="@id/origen"
+        app:layout_constraintTop_toTopOf="@id/back_button_layout"
+        android:layout_below="@id/back_button_layout"
         android:orientation="horizontal">
 
         <TextView
