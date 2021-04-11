@@ -3,10 +3,12 @@ package com.example.truckers.view.ui;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.widget.Toolbar;
@@ -31,5 +33,15 @@ public class MapsActivity extends AppCompatActivity {
             }
         });
 
+
+        Button start_route = (Button) findViewById(R.id.start_route_btn);
+
+        start_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), StartRouteMapActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

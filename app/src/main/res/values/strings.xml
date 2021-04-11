@@ -19,4 +19,5 @@
     <string name="menu_alerts">Alertas</string>
     <string name="menu_logout">Cerrar sesión</string>
     <string name="menu_send">Send</string>
+    <string name="title_activity_start_route_map">Map</string>
 </resources>
