@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,3 +12,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ui.StartRouteMapActivity" />
+
+<EditText
+    android:id="@+id/busqueda"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="60dp"
+    android:layout_marginRight="20dp"
+    android:padding="10dp"
+    android:inputType="textPostalAddress"
+    android:imeOptions="actionSend"/>
+
+</FrameLayout>
