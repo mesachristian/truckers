@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
 import android.location.Address;
@@ -13,16 +14,26 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.truckers.R;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,10 +43,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.List;
 
 public class StartRouteMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -95,12 +108,62 @@ public class StartRouteMapActivity extends FragmentActivity implements OnMapRead
 
         int permissionLocation1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         int permissionLocation2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
-
         if (permissionLocation1 != PackageManager.PERMISSION_GRANTED
                 && permissionLocation2 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2000);
         }
+
+        initView();
+
+
+        geocoder = new Geocoder(this);
+        address = findViewById(R.id.busqueda);
+        address.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String direccion = address.getText().toString();
+                    if (!direccion.isEmpty()) {
+                        try {
+                            List<Address> addresses = geocoder.getFromLocationName(direccion, 2);
+                            if (addresses != null && !addresses.isEmpty()) {
+                                Address addressResult = addresses.get(0);
+                                if (mMap != null) {
+                                    if(searchM != null) {
+                                        searchM.remove();
+                                    }
+                                    LatLng location = new LatLng(addressResult.getLatitude(), addressResult.getLongitude());
+                                    searchM = mMap.addMarker(new MarkerOptions().
+                                            position(location).
+                                            title(addressResult.getAddressLine(0)).
+                                            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                                    mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+
+                                    Double latitude1 = searchM.getPosition().latitude;
+                                    Double latitude2 = locationM.getPosition().latitude;
+                                    Double longitude1 = searchM.getPosition().longitude;
+                                    Double longitude2 = locationM.getPosition().longitude;
+                                    Toast.makeText(StartRouteMapActivity.this, "La distancia es: " + distance(latitude1, longitude1, latitude2, longitude2) + " Km", Toast.LENGTH_SHORT).show();
+
+                                }
+                            } else {
+                                Toast.makeText(v.getContext(), "Dirección No Encontrada", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                return false;
+            }
+        });
+
+
+
+
+
     }
 
     private void startLocationUpdates() {
@@ -124,7 +187,7 @@ public class StartRouteMapActivity extends FragmentActivity implements OnMapRead
     private void stopLocationUpdates(){
         clientLocation.removeLocationUpdates(locationCallback);
     }
-
+/*
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -151,7 +214,7 @@ public class StartRouteMapActivity extends FragmentActivity implements OnMapRead
                 Toast.makeText(StartRouteMapActivity.this, "La distancia es: " + distance(latitude1, longitude1, latitude2, longitude2) + " Km", Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 
 
     protected LocationRequest createLocationRequest() {
@@ -183,5 +246,69 @@ public class StartRouteMapActivity extends FragmentActivity implements OnMapRead
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double result = 6371 * c;
         return Math.round(result*100.0)/100.0;
+    }
+
+    private void initView(){
+        if(ContextCompat.checkSelfPermission(this, permLocation)== PackageManager.PERMISSION_GRANTED) {
+            checkSettingsLocation();
+        }
+    }
+
+    private void checkSettingsLocation(){
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                startLocationUpdates();
+            }
+        });
+        task.addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull  Exception e) {
+                int statusCode = ((ApiException)e).getStatusCode();
+                switch (statusCode){
+                    case CommonStatusCodes.RESOLUTION_REQUIRED:
+                        try {
+                            ResolvableApiException resolvable = (ResolvableApiException) e;
+                            resolvable.startResolutionForResult(StartRouteMapActivity.this,SETTINGS_GPS );
+                        } catch (IntentSender.SendIntentException sendEx) {
+                        } break;
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        break;
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.setMyLocationEnabled(true);
+
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                if(searchM != null)
+                {
+                    searchM.remove();
+                }
+                searchM=mMap.addMarker(new MarkerOptions().position(latLng).title(geoCoderSearchLatLang(latLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                Double latitude1 = searchM.getPosition().latitude;
+                Double latitude2 = locationM.getPosition().latitude;
+                Double longitude1 = searchM.getPosition().longitude;
+                Double longitude2 = locationM.getPosition().longitude;
+                Toast.makeText(StartRouteMapActivity.this, "La distancia es: " + distance(latitude1, longitude1, latitude2, longitude2) + " Km", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
