@@ -29,13 +29,12 @@
         android:id="@+id/botones"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/destino"
+
         android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:padding="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/destino">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <Button
