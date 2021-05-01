@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.truckers.HomeDrawer;
 import com.example.truckers.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(LoginActivity.this, HomeDrawer.class);
+                startActivity(intent);
             }
         });
     }

@@ -5,109 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".view.ui.MapsActivity"
-    >
+    tools:context=".view.ui.MapsActivity">
 
     <LinearLayout
         android:id="@+id/back_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="left">
+        android:gravity="left"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/home_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_arrow_back_black_24dp"
-            android:background="@color/background"/>
+            android:layout_marginTop="10dp"
+            android:background="@color/background"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:padding="15dp"
-        android:id="@+id/origen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/back_button_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
-            android:text="Origen:"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:padding="15dp"
-        android:id="@+id/destino"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/origen"
-        android:layout_below="@id/origen"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Destino:"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/botones"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/destino"
-        android:layout_below="@id/destino"
+
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:padding="30dp"
-        android:layout_marginTop="50dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <Button
             android:id="@+id/start_route_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INICIAR RUTA"
             android:background="@drawable/rounded_corner"
-            android:textColor="@color/button_font"
+            android:text="INICIAR RUTA"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textColor="@color/button_font"
+            android:textSize="20dp" />
 
         <View
             android:layout_width="match_parent"
@@ -118,21 +56,14 @@
             android:id="@+id/recomendation_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RECOMENDACIONES"
             android:background="@drawable/rounded_corner"
-            android:textColor="@color/button_font"
+            android:text="RECOMENDACIONES"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textColor="@color/button_font"
+            android:textSize="20dp" />
 
 
     </LinearLayout>
-
-
-
-
-
-
 
 
 </RelativeLayout>

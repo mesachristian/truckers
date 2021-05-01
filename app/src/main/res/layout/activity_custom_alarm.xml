@@ -4,76 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomAlarmActivity">
+    tools:context=".CustomAlarmActivity"
+    android:background="@color/background">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="85dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nombre alarma"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="154dp" />
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="101dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Pulso alarma"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="318dp" />
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="101dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Avisame cuando sea"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="459dp" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="405dp"
-        android:layout_height="54dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="1dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nueva alarma"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="86dp" />
+        android:textAlignment="center"
+        android:textColor="#0E0E0E"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#952828"
+        android:layout_marginStart="177dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginBottom="47dp"
+        android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         android:tint="#FFFFFF"
         app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="#FFFFFF"
-        app:srcCompat="?android:attr/textCheckMark"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="628dp" />
+        app:srcCompat="@drawable/ic_baseline_check_24" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="296dp"
         android:layout_height="69dp"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="222dp">
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -84,32 +94,52 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Alarma personalizada 1" />
+                android:hint="Alarma personalizada 1"
+                android:textColorLink="@color/colorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText"
         android:layout_width="297dp"
         android:layout_height="61dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="57dp"
         android:hint="60"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="378dp" />
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="176dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Mayor"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="527dp" />
+        android:textColor="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="200dp"
         android:text="Menor"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="527dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

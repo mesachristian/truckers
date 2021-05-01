@@ -10,5 +10,6 @@ public class CustomAlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_alarm);
+        getSupportActionBar().setTitle("Nueva Alarma");
     }
 }
