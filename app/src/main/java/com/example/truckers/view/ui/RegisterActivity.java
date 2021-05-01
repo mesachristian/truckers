@@ -10,23 +10,32 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.truckers.MainActivity;
 import com.example.truckers.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,6 +46,9 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView profilePicture;
 
     private FirebaseAuth mAuth;
+    private FirebaseStorage mStorage;
+
+    private EditText emailField, passwordField, checkPasswordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,9 @@ public class RegisterActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Initialize Storage
+        mStorage = FirebaseStorage.getInstance();
+
         // Camera permission
         if(ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(RegisterActivity.this,
@@ -53,6 +68,10 @@ public class RegisterActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     }, TAKE_IMAGE);
         }
+
+        emailField = findViewById(R.id.register_email_field);
+        passwordField = findViewById(R.id.register_password_field);
+        checkPasswordField = findViewById(R.id.check_password_field);
 
         profilePicture = (ImageView) findViewById(R.id.register_profile_pic);
         ImageButton backBtn = (ImageButton) findViewById(R.id.register_back_button);
@@ -89,6 +108,18 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = emailField.getText().toString();
+                String password = passwordField.getText().toString();
+                String passwordCheck = checkPasswordField.getText().toString();
+
+                Bitmap bitmap = ((BitmapDrawable)profilePicture.getDrawable()).getBitmap();
+
+                if(password.equals(passwordCheck) && bitmap != null){
+                    createUserInFirebase(email, password);
+                }else{
+                    Toast.makeText(RegisterActivity.this,"Verifique que los campos esten completos y bien",
+                            Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -102,14 +133,45 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-
+                            saveProfileImage(user);
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finishAffinity();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                            Toast.makeText(RegisterActivity.this, "Error creando usuario",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    private void saveProfileImage(FirebaseUser user){
+        String userID = user.getUid();
+        StorageReference storageReference = mStorage.getReference();
+        StorageReference imagesReference = storageReference.child("images");
+
+        StorageReference profileImageReference = imagesReference.child(userID + "/profilePic.jpg");
+
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) profilePicture.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = profileImageReference.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+            }
+        });
     }
 
     @Override

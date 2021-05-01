@@ -5,6 +5,7 @@
     <string name="password_hint">Contraseña</string>
     <string name="password_check">Confirmar contraseña</string>
     <string name="email_hint">Correo</string>
+    <string name="profile_image_label">Seleccione su imagen de perfil</string>
     <string name="title_activity_home_drawer">HomeDrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

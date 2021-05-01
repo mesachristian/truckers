@@ -22,6 +22,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -41,6 +42,8 @@ public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNa
 
     public NavigationView navigationView;*/
 
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,8 @@ public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNa
                         .setAction("Action", null).show();
             }
         });
+
+        auth = FirebaseAuth.getInstance();
 
         /*frameLayout = (FrameLayout) findViewById(R.id.nav_view);*/
 
@@ -91,6 +96,13 @@ public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNa
                 return true;
             case R.id.nav_alerts:
                 startActivity(new Intent(HomeDrawer.this, AlarmActivity.class));
+                return true;
+
+            case R.id.nav_logout:
+                auth.signOut();
+                Intent intent = new Intent(HomeDrawer.this, MainActivity.class);
+                startActivity(intent);
+                finishAffinity();
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
