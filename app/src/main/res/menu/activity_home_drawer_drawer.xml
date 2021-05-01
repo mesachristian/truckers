@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_24dp"
+            android:title="@string/menu_home"
+            android:visible="true" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_person_24dp"
+            android:title="@string/menu_perfil" />
+        <item
+            android:id="@+id/nav_routes"
+            android:icon="@drawable/ic_directions_24dp"
+            android:title="@string/menu_routes" />
+        <item
+            android:id="@+id/nav_alerts"
+            android:icon="@drawable/ic_notifications_24dp"
+            android:title="@string/menu_alerts" />
+    </group>
+
+    <item android:title="Sesión">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_subdirectory_arrow_left_24dp"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+</menu>
