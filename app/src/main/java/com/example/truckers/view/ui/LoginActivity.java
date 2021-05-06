@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.truckers.HomeDrawer;
 import com.example.truckers.MainActivity;
 import com.example.truckers.R;
+import com.example.truckers.model.Alarm;
+import com.example.truckers.provider.AlarmProvider;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,8 +47,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         loginBtn = findViewById(R.id.login_btn);
+
+        AlarmProvider.CreateDefaultAlarms();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +79,5 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
