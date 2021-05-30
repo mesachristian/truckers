@@ -1,4 +1,4 @@
-package com.example.truckers.provider;
+package com.example.truckers.provider.alarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
-import com.example.truckers.MainActivity;
 import com.example.truckers.model.Alarm;
-import com.example.truckers.view.ui.alarm.AlarmReceiver;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,6 +21,8 @@ public class  AlarmProvider {
 
     private static int alarmID = 1;
 
+    public static Alarm sensorAlarm = new Alarm();
+
     public static void createUserAlarm(String userId, Alarm alarm) {
         database.child("alarms").child(userId).setValue(alarm);
     }
@@ -34,10 +34,10 @@ public class  AlarmProvider {
                 50,
                 60);
 
-        database.child("alarms").child("WS066B0TLvcvhZowXkCz44M7lTI2\n").setValue(alarm);
+        database.child("alarms").child("WS066B0TLvcvhZowXkCz44M7lTI2").setValue(alarm);
     }
 
-    public static void CreateAlarm(Context ctx){
+    public static void createAlarm(Context ctx){
 
         Calendar currentTime = Calendar.getInstance();
 

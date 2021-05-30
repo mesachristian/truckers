@@ -11,11 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.truckers.HomeDrawer;
 import com.example.truckers.MainActivity;
 import com.example.truckers.R;
-import com.example.truckers.model.Alarm;
-import com.example.truckers.provider.AlarmProvider;
+import com.example.truckers.provider.alarm.AlarmProvider;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

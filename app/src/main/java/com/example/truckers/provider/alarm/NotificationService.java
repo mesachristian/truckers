@@ -1,4 +1,4 @@
-package com.example.truckers.view.ui.alarm;
+package com.example.truckers.provider.alarm;
 
 import android.annotation.TargetApi;
 import android.app.IntentService;
@@ -47,9 +47,9 @@ public class NotificationService extends IntentService {
         Intent mIntent = new Intent(this, MainActivity.class);
 
         Resources res = this.getResources();
-        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 
-        String message = "Hi";
+        String message = intent.getStringExtra("message");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final int NOTIFY_ID = 0; // ID of notification
