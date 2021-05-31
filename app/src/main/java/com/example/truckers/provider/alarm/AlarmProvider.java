@@ -41,7 +41,7 @@ public class  AlarmProvider {
 
         Calendar currentTime = Calendar.getInstance();
 
-        //settings = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+        settings = ctx.getSharedPreferences("Truckers", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor edit = settings.edit();
         edit.putString("hour",  ""+currentTime.get(Calendar.HOUR_OF_DAY));
