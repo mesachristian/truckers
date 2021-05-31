@@ -2,6 +2,8 @@ package com.example.truckers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(MainActivity.this, HomeNotLoggedInActivity.class);
 
                 }else{
+
                     intent = new Intent(MainActivity.this, HomeDrawer.class);
                 }
                 startActivity(intent);
