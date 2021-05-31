@@ -2,8 +2,12 @@ package com.example.truckers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.example.truckers.view.ui.HomeNotLoggedInActivity;
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 if(currentUser == null){
                     intent = new Intent(MainActivity.this, HomeNotLoggedInActivity.class);
                 }else{
+
                     intent = new Intent(MainActivity.this, HomeDrawer.class);
                 }
                 startActivity(intent);

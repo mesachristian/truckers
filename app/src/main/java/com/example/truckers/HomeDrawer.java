@@ -1,6 +1,9 @@
 package com.example.truckers;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.truckers.view.ui.MapsActivity;
@@ -14,6 +17,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,6 +35,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -59,7 +65,20 @@ public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
-        auth = FirebaseAuth.getInstance();
+        FloatingActionButton llamada = (FloatingActionButton) findViewById(R.id.fab);
+
+        llamada.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View arg0) {
+                                           String number = "123";
+                                           Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                           callIntent.setData(Uri.parse("tel:" + number));
+                                           startActivity(callIntent);
+                                       }
+                                   });
+
+
+            auth = FirebaseAuth.getInstance();
 
         /*frameLayout = (FrameLayout) findViewById(R.id.nav_view);*/
 
@@ -85,6 +104,10 @@ public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNa
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);*/
+        if (ContextCompat.checkSelfPermission(HomeDrawer.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(HomeDrawer.this, new String[]{Manifest.permission.CALL_PHONE},1);
+        }
+
     }
 
     @Override
@@ -108,6 +131,14 @@ public class HomeDrawer extends AppCompatActivity implements NavigationView.OnNa
                 return super.onOptionsItemSelected(menuItem);
         }
 
+    }
+
+
+
+    public void callEmergency(View v){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:"+123));//change the number
+        startActivity(callIntent);
     }
 
     public void showViewAlarms(View v){
