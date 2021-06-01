@@ -25,20 +25,6 @@ public class AlarmActivity extends AppCompatActivity {
         ImageButton backBtn = (ImageButton) findViewById(R.id.home_back_button);
         getSupportActionBar().setTitle("Mis Alarmas");
 
-        TextView text2 = (TextView) findViewById(R.id.editTextTextPersonName4);
-        Switch sw2 = (Switch) findViewById(R.id.switch3);
-        Log.println(Log.ASSERT,"AA",String.valueOf(text2.getVisibility()));
-        if(text2.getVisibility() == 0) {
-            Log.println(Log.ASSERT,"AA","AAAA");
-            sw2.setVisibility(View.VISIBLE);
-            text2.setVisibility(View.VISIBLE);
-        }
-
-        TextView text = (TextView) findViewById(R.id.editTextTextPersonName4);
-        Switch sw = (Switch) findViewById(R.id.switch3);
-        sw.setVisibility(View.INVISIBLE);
-        text.setVisibility(View.INVISIBLE);
-
     }
 
     public void showCustomActivity(View v){

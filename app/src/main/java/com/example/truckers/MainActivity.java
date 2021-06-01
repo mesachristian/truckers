@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         minute = settings.getString("minute","");
         AlarmProvider.sensorAlarm.message = "Su pulso esta demasiado bajo";
 
-        createAlarm(17,49);
+        createAlarm(DateTime.now().getHourOfDay(),DateTime.now().getMinuteOfDay() + 1);
+
 
         auth = FirebaseAuth.getInstance();
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         edit.commit();
 
-        Toast.makeText(MainActivity.this, finalHour + ":" + finalMinute, Toast.LENGTH_LONG).show();
+        //Toast.makeText(MainActivity.this, finalHour + ":" + finalMinute, Toast.LENGTH_LONG).show();
 
         AlarmProvider.setAlarm(1, today.getTimeInMillis(), MainActivity.this);
     }
